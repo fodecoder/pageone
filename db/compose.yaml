@@ -1,0 +1,14 @@
+# db/compose.yaml
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dev_only_password # throwaway local secret, never reuse it
+    ports:
+      - "5432:5432"
+    volumes:
+    # postgres:18+ image: mount at /var/lib/postgresql, NOT /var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
+volumes:
+  pgdata:
